@@ -11,7 +11,7 @@ def process():
     return response
 
 
-@app.route('/process', methods=['POST'])
+@app.route('/process', method=['POST'])
 def process():
     response = ''
     try:  
