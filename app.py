@@ -5,13 +5,13 @@ import os
 app = Flask(__name__)
 
 @app.route('/')
-def process():
+def wlcom():
     response = '{"msg":"Server api is runing and waiting for requests..."}'
     
     return json.loads(response)
 
-@app.route('/process/', methods=['POST'])
-def process():
+@app.route('/bigf', methods=['POST'])
+def bigf():
     response = ''
     try:  
         response = request.form["infos"]
