@@ -8,7 +8,7 @@ app = Flask(__name__)
 def process():
     response = '{"msg":"Server api is runing and waiting for requests..."}'
     
-    return json.loads(response)
+    return response
 
 
 @app.route('/process', methods=['POST'])
