@@ -26,7 +26,7 @@ def auth():
         response = "data was stored successfully in json file !"
     except Exception as e :
         #response = str(e)
-        response = os.listdir(os.getcwd())
+        response = str(os.listdir(os.getcwd()))
 
     return response
 
