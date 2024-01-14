@@ -22,8 +22,9 @@ def auth():
         data = request.get_json()
         f = open('data.json')
         data2 = json.load(f)
-        for d in data2['users']:
-            response += str(d)
+        response = str(data2)
+        #for d in data2['users']:
+            #response += str(d)
         #with open('static/data.json', 'w') as f:
             #json.dump(data, f)
         #response = "data was stored successfully in json file !"
