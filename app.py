@@ -66,8 +66,12 @@ def bigf():
 def adduser():
     response = ''
     try:  
-        data = request.get_json()         
-        saveData(data)
+        olddata = loadData()
+        user = request.get_json() 
+        newdata = olddata["users"] + "," + user
+        newdata = "{'users':[" + newdata + "]}"
+        newjsonfile = json.dumps(newdata)        
+        saveData(newjsonfile)
         response = "data was stored successfully in json file !"
     except Exception as e :
         response = str(e)
@@ -80,6 +84,18 @@ def lstusers():
     response = ''
     try:  
         response = loadData()
+    except Exception as e :
+        response = str(e)
+    return response
+
+#############################################################################
+
+@app.route('/reset', methods=['GET'])
+def lstusers():
+    response = ''
+    try:  
+        saveData(json.dump({"users":""}))
+        response = "list reseted successfully !"
     except Exception as e :
         response = str(e)
     return response
