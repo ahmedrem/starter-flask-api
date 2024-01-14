@@ -24,8 +24,7 @@ def loadData():
         Bucket="cyclic-outstanding-tank-top-tick-eu-west-3",
         Key="data/data.json"
     )
-    return data['Body'].read()
-    #return json.loads(data['Body'].read())
+    return json.loads(data['Body'].read())
 
 #############################################################################
 
@@ -68,12 +67,16 @@ def adduser():
     response = ''
     try:  
         user = request.get_json()
-        saveData(user)
-        olddata = json.loads(loadData())
-        response = json.dumps(olddata.get("users", {}))
+        data = loadData()
+        lstusers = data.get("users",[])
+        lstusers.append(user)
+        data["users"] = lstusers
+        saveData(data)
+        #olddata = json.loads(loadData())
+        #response = json.dumps(olddata.get("users", {}))
         #newdata = json.dumps(olddata)        
         #saveData(newdata)
-        #response = "data was stored successfully in json file !"
+        response = "data was stored successfully in json file !"
     except Exception as e :
         response = str(e)
     return response
@@ -95,7 +98,7 @@ def lstusers():
 def delall():
     response = ''
     try:  
-        var = {"users":[{"email":"root","bf":"root","img":"root"}]}
+        var = {"users":[]}
         saveData(var)
         response = "list reseted successfully !"
     except Exception as e :
