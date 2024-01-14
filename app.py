@@ -68,13 +68,11 @@ def adduser():
     response = ''
     try:  
         user = request.get_json()
-        saveData(user)
         olddata = json.loads(loadData())
-        response = olddata['email']
-        #newdata = "{'users':[" + str(newdata) + "]}"
-        #newjsonfile = json.dumps(newdata)        
-        #saveData(newjsonfile)
-        #response = "data was stored successfully in json file !"
+        olddata["users"] = user
+        newdata = json.dumps(olddata)        
+        saveData(newdata)
+        response = "data was stored successfully in json file !"
     except Exception as e :
         response = str(e)
     return response
@@ -96,7 +94,7 @@ def lstusers():
 def delall():
     response = ''
     try:  
-        saveData(json.dumps({'users':'null'}))
+        saveData(json.dumps({"users":[{}]}))
         response = "list reseted successfully !"
     except Exception as e :
         response = str(e)
