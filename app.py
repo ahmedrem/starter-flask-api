@@ -56,8 +56,8 @@ def bigf():
     response = ''
     try:  
         response = request.get_json()   
-    except:
-        response = '{"msg":"Failed to load data request !"}'
+   except Exception as e :
+        response = str(e)
     return response
 
 #############################################################################
@@ -69,8 +69,8 @@ def adduser():
         data = request.get_json()         
         saveData(data)
         response = "data was stored successfully in json file !"
-    except:
-        response = "Error reading data from the bucket !"
+    except Exception as e :
+        response = str(e)
     return response
 
 #############################################################################
@@ -80,8 +80,8 @@ def lstusers():
     response = ''
     try:  
         response = loadData()
-    except:
-        response = "Error when reading data from the bucket !"
+    except Exception as e :
+        response = str(e)
     return response
 
 #############################################################################
