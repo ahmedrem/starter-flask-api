@@ -90,8 +90,8 @@ def lstusers():
 
 #############################################################################
 
-@app.route('/reset', methods=['GET'])
-def lstusers():
+@app.route('/delall', methods=['GET'])
+def delall():
     response = ''
     try:  
         saveData(json.dump({"users":""}))
