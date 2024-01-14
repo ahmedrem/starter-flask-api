@@ -68,7 +68,7 @@ def adduser():
     try:  
         olddata = loadData()
         user = request.get_json()
-        newdata = str(olddata['users']) + "," + str(user)
+        #olddata['users']
         #newdata = "{'users':[" + str(newdata) + "]}"
         #newjsonfile = json.dumps(newdata)        
         #saveData(newjsonfile)
