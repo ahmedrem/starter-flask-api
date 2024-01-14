@@ -68,10 +68,10 @@ def adduser():
     try:  
         olddata = loadData()
         user = request.get_json() 
-        newdata = olddata["users"] + "," + user
-        newdata = "{'users':[" + str(newdata) + "]}"
-        newjsonfile = json.dumps(newdata)        
-        saveData(newjsonfile)
+        newdata = str(olddata["users"]) + "," + str(user)
+        #newdata = "{'users':[" + str(newdata) + "]}"
+        #newjsonfile = json.dumps(newdata)        
+        #saveData(newjsonfile)
         response = "data was stored successfully in json file !"
     except Exception as e :
         response = str(e)
