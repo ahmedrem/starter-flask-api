@@ -22,4 +22,4 @@ def bigf():
     except:
         response = '{"msg":"Failed to load data request !"}'
 
-    return json.loads(response)
+    return response
