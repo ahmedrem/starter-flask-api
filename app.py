@@ -24,9 +24,6 @@ def loadData():
     return json.loads(data['Body'].read())
 
 
-print(json.loads(my_file['Body'].read()))
-
-
 @app.route('/')
 def wlcom():
     response = '<marquee><h1>This is a flask API for the HPRAPP</h1><h2>Created by AhmedRem</h2></marquee>'
