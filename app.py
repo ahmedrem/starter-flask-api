@@ -68,6 +68,7 @@ def adduser():
     response = ''
     try:  
         user = request.get_json()
+        saveData(user)
         olddata = json.loads(loadData())
         response = olddata["email"]
         #newdata = json.dumps(olddata)        
@@ -95,7 +96,7 @@ def delall():
     response = ''
     try:  
         var = {"users":[{"email":"root","bf":"root","img":"root"}]}
-        saveData(json.dumps(var))
+        saveData(var)
         response = "list reseted successfully !"
     except Exception as e :
         response = str(e)
