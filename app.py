@@ -9,7 +9,7 @@ app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.jpeg', '.png', '.gif', '.bmp']
 
 @app.route('/')
 def wlcom():
-    response = '<h1>This is a flask API for the HPRAPP</h1><br><h2>Created by AhmedRem</h2>'
+    response = '<marquee><h1>This is a flask API for the HPRAPP</h1><h2>Created by AhmedRem</h2></marquee>'
     
     return response
 
