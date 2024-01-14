@@ -21,7 +21,7 @@ def auth():
     try :  
         data = request.get_json()
         #data = '{"email":"'+respnse.get("email")+'"}'
-        with open('data.json', 'w') as f:
+        with open('static/data.json', 'w') as f:
             json.dump(data, f)
         response = "data was stored successfully in json file !"
     except Exception as e :
