@@ -18,13 +18,13 @@ def wlcom():
 @app.route('/auth', methods=['POST'])
 def auth():
     response = ''
-    try:  
+    try :  
         data = request.get_json()
         #data = '{"email":"'+respnse.get("email")+'"}'
         with open('data.json', 'w') as f:
             json.dump(data, f)
         response = "data was stored successfully in json file !"
-    except, e:
+    except Exception as e :
         response = str(e)
 
     return response
