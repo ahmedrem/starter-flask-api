@@ -87,7 +87,7 @@ def adduser():
 def lstusers():
     response = ''
     try:  
-        response = json.loads(loadData())
+        response = loadData()
     except Exception as e :
         response = str(e)
     return response
