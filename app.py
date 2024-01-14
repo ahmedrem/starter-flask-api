@@ -24,7 +24,8 @@ def loadData():
         Bucket="cyclic-outstanding-tank-top-tick-eu-west-3",
         Key="data/data.json"
     )
-    return json.loads(data['Body'].read())
+    return data['Body'].read()
+    #return json.loads(data['Body'].read())
 
 #############################################################################
 
@@ -66,7 +67,7 @@ def bigf():
 def adduser():
     response = ''
     try:  
-        olddata = loadData()
+        olddata = json.loads(loadData())
         user = request.get_json()
         response = olddata['users']
         #newdata = "{'users':[" + str(newdata) + "]}"
