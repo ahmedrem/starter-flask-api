@@ -19,12 +19,13 @@ def wlcom():
 def auth():
     response = ''
     try:  
-        response = request.get_json()
+        data = request.get_json()
         #data = '{"email":"'+respnse.get("email")+'"}'
         with open('data.json', 'w') as f:
-            json.dump(response, f)
-    except:
-        response = '{"msg":"Failed to load data from Auth !"}'
+            json.dump(data, f)
+        response = "data was stored successfully in json file !"
+    except, e:
+        response = str(e)
 
     return response
 
