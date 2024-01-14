@@ -56,7 +56,7 @@ def bigf():
     response = ''
     try:  
         response = request.get_json()   
-   except Exception as e :
+    except Exception as e :
         response = str(e)
     return response
 
