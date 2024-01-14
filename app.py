@@ -84,7 +84,7 @@ def adduser():
 def lstusers():
     response = ''
     try:  
-        response = loadData()
+        response = json.loads(loadData())
     except Exception as e :
         response = str(e)
     return response
@@ -95,7 +95,7 @@ def lstusers():
 def delall():
     response = ''
     try:  
-        saveData(json.dumps({'users':'null'}))
+        saveData(json.dumps({"users":"null"}))
         response = "list reseted successfully !"
     except Exception as e :
         response = str(e)
