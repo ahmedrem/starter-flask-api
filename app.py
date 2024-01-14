@@ -17,8 +17,7 @@ def wlcom():
 def bigf():
     response = ''
     try:  
-        print(request.form[""])
-        response = request.form[""]
+        response = request.form.get()
         
     except:
         response = '{"msg":"Failed to load data request !"}'
