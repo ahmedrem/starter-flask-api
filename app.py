@@ -1,10 +1,30 @@
 from flask import Flask, request
+import boto3
 import json
 import os
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
 app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.jpeg', '.png', '.gif', '.bmp']
+
+s3 = boto3.client('s3')
+
+def saveData(data):
+    s3.put_object(
+        Body=json.dumps(data),
+        Bucket="cyclic-outstanding-tank-top-tick-eu-west-3",
+        Key="data/data.json"
+    ) 
+
+def loadData():
+    data = s3.get_object(
+        Bucket="cyclic-outstanding-tank-top-tick-eu-west-3",
+        Key="data/data.json"
+    )
+    return json.loads(data['Body'].read())
+
+
+print(json.loads(my_file['Body'].read()))
 
 
 @app.route('/')
@@ -20,14 +40,8 @@ def auth():
     response = ''
     try :  
         data = request.get_json()
-        f = open('data.json')
-        data2 = json.load(f)
-        response = str(data2)
-        #for d in data2['users']:
-            #response += str(d)
-        #with open('static/data.json', 'w') as f:
-            #json.dump(data, f)
-        #response = "data was stored successfully in json file !"
+        saveData(data)
+        response = "data was stored successfully in json file !"
     except Exception as e :
         response = str(e)
         #response = str(os.listdir(os.getcwd()))
