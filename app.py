@@ -20,13 +20,16 @@ def auth():
     response = ''
     try :  
         data = request.get_json()
-        #data = '{"email":"'+respnse.get("email")+'"}'
-        with open('static/data.json', 'w') as f:
-            json.dump(data, f)
-        response = "data was stored successfully in json file !"
+        f = open('data.json')
+        data2 = json.load(f)
+        for d in data2['users']:
+            response += d
+        #with open('static/data.json', 'w') as f:
+            #json.dump(data, f)
+        #response = "data was stored successfully in json file !"
     except Exception as e :
-        #response = str(e)
-        response = str(os.listdir(os.getcwd()))
+        response = str(e)
+        #response = str(os.listdir(os.getcwd()))
 
     return response
 
