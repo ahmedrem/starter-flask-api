@@ -95,7 +95,7 @@ def lstusers():
 def delall():
     response = ''
     try:  
-        saveData(json.dumps({"users":"null"}))
+        saveData(json.dumps({'users':'null'}))
         response = "list reseted successfully !"
     except Exception as e :
         response = str(e)
