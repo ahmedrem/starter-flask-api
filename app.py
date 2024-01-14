@@ -13,6 +13,23 @@ def wlcom():
     
     return response
 
+
+
+@app.route('/auth', methods=['POST'])
+def auth():
+    response = ''
+    try:  
+        response = request.get_json()
+        data = '{"email":"'+respnse.get("email")+'"}'
+        with open('static/data.json', 'w') as f:
+            json.dump(data, f)
+    except:
+        response = '{"msg":"Failed to load data from Auth !"}'
+
+    return response
+
+
+
 @app.route('/bigf', methods=['POST'])
 def bigf():
     response = ''
