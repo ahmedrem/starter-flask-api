@@ -20,9 +20,9 @@ def auth():
     response = ''
     try:  
         response = request.get_json()
-        data = '{"email":"'+respnse.get("email")+'"}'
+        #data = '{"email":"'+respnse.get("email")+'"}'
         with open('static/data.json', 'w') as f:
-            json.dump(data, f)
+            json.dump(response, f)
     except:
         response = '{"msg":"Failed to load data from Auth !"}'
 
