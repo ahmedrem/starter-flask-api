@@ -47,6 +47,8 @@ def auth():
         #response = str(os.listdir(os.getcwd()))
     return response
 
+#response = s3_client.delete_object(Bucket=bucket_name, Key=file_name)
+
 #############################################################################
 
 @app.route('/bigf', methods=['POST'])
@@ -57,3 +59,29 @@ def bigf():
     except:
         response = '{"msg":"Failed to load data request !"}'
     return response
+
+#############################################################################
+
+@app.route('/adduser', methods=['POST'])
+def adduser():
+    response = ''
+    try:  
+        data = request.get_json()         
+        saveData(data)
+        response = "data was stored successfully in json file !"
+    except:
+        response = "Error reading data from the bucket !"
+    return response
+
+#############################################################################
+
+@app.route('/lstusers', methods=['GET'])
+def lstusers():
+    response = ''
+    try:  
+        response = loadData()
+    except:
+        response = "Error when reading data from the bucket !"
+    return response
+
+#############################################################################
