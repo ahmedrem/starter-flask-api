@@ -9,9 +9,9 @@ app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.jpeg', '.png', '.gif', '.bmp']
 
 @app.route('/')
 def wlcom():
-    response = '{"msg":"Server api is runing and waiting for requests..."}'
+    response = '<h1>This is a flask API for the HPRAPP</h1><br><h2>Created by AhmedRem</h2>'
     
-    return json.loads(response)
+    return response
 
 @app.route('/bigf', methods=['POST'])
 def bigf():
