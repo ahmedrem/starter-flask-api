@@ -67,9 +67,10 @@ def bigf():
 def adduser():
     response = ''
     try:  
-        olddata = json.loads(loadData())
         user = request.get_json()
-        response = user['email']
+        saveData(user)
+        olddata = json.loads(loadData())
+        response = olddata['email']
         #newdata = "{'users':[" + str(newdata) + "]}"
         #newjsonfile = json.dumps(newdata)        
         #saveData(newjsonfile)
