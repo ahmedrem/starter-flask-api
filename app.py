@@ -62,7 +62,7 @@ def bigf():
 
 #############################################################################
 
-@app.route('/adduser', methods=['POST'])
+@app.route('/newuser', methods=['POST'])
 def adduser():
     response = ''
     try:  
