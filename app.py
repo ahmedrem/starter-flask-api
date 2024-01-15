@@ -67,8 +67,8 @@ def getimage():
     response = ''
     try:  
         user = request.get_json()
-        email = user.get("email")
-        img = user.get("img")
+        email = user["email"]
+        img = user["img"]
         data = loadData()
         lstusers = data.get("users",[])
         user = lstusers.get(email,[])
