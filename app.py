@@ -63,7 +63,7 @@ def bigf():
         email = list(user.keys())
         email = email[0]
         data = loadData()
-        data[email] = user.get(email)
+        data[email]["bf"] = user.get(email).get("bf")
         saveData(data)
         response = user.get(email).get("bf")
         #response = "user updated successfully in json file"
@@ -81,7 +81,7 @@ def getimage():
         email = list(user.keys())
         email = email[0]
         data = loadData()
-        data[email] = user.get(email)
+        data[email]["img"] = user.get(email).get("img")
         saveData(data)
         response = user.get(email).get("img")
         #response = "user updated successfully in json file"
