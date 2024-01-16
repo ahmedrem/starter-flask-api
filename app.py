@@ -124,7 +124,7 @@ def lstusers():
 def delall():
     response = ''
     try:  
-        var = {"users":[]}
+        var = {"email":{"bf":{"o":"","c":"","e":"","a":"","n":""},"img":""}}
         saveData(var)
         response = "list reseted successfully !"
     except Exception as e :
