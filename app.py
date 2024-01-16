@@ -58,7 +58,7 @@ def adduser():
 @app.route('/bf', methods=['POST'])
 def bigf():
     response = ''
-     try:  
+    try:  
         user = request.get_json()
         email = list(user.keys())
         email = email[0]
