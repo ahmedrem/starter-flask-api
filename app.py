@@ -26,6 +26,8 @@ def loadData():
     )
     return json.loads(data['Body'].read())
 
+#response = s3_client.delete_object(Bucket=bucket_name, Key=file_name)
+
 #############################################################################
 
 @app.route('/')
@@ -35,27 +37,36 @@ def wlcom():
 
 #############################################################################
 
-@app.route('/auth', methods=['POST'])
-def auth():
+@app.route('/newuser', methods=['POST'])
+def adduser():
     response = ''
-    try :  
-        data = request.get_json()
+    try:        
+        user = request.get_json()
+        email = list(user.keys())
+        email = email[0]
+        data = loadData()
+        if(not email in data.keys()):
+            data[email] = user.get(email)
         saveData(data)
-        response = "data was stored successfully in json file !"
+        response = "new user was added sucessfully to json file !"
     except Exception as e :
         response = str(e)
-        #response = str(os.listdir(os.getcwd()))
     return response
-
-#response = s3_client.delete_object(Bucket=bucket_name, Key=file_name)
 
 #############################################################################
 
-@app.route('/bigf', methods=['POST'])
+@app.route('/bf', methods=['POST'])
 def bigf():
     response = ''
-    try:  
-        response = request.get_json()   
+     try:  
+        user = request.get_json()
+        email = list(user.keys())
+        email = email[0]
+        data = loadData()
+        data[email] = user.get(email)
+        saveData(data)
+        response = user.get(email).get("bf")
+        #response = "user updated successfully in json file"
     except Exception as e :
         response = str(e)
     return response
@@ -67,42 +78,13 @@ def getimage():
     response = ''
     try:  
         user = request.get_json()
-        email = user["email"]
-        img = user["img"]
+        email = list(user.keys())
+        email = email[0]
         data = loadData()
-        lstusers = data.get("users",[])
-        user = lstusers.get(email,[])
-        user["img"] = img
-        lstuser[email] = user
-        data["users"] = lstusers
+        data[email] = user.get(email)
         saveData(data)
-        response = img
-        #olddata = json.loads(loadData())
-        #response = json.dumps(olddata.get("users", {}))
-        #newdata = json.dumps(olddata)        
-        #saveData(newdata)
-        #response = "data was stored successfully in json file !"
-    except Exception as e :
-        response = str(e)
-    return response
-
-#############################################################################
-
-@app.route('/newuser', methods=['POST'])
-def adduser():
-    response = ''
-    try:  
-        user = request.get_json()
-        data = loadData()
-        lstusers = data.get("users",[])
-        lstusers.append(user)
-        data["users"] = lstusers
-        saveData(data)
-        #olddata = json.loads(loadData())
-        #response = json.dumps(olddata.get("users", {}))
-        #newdata = json.dumps(olddata)        
-        #saveData(newdata)
-        response = "data was stored successfully in json file !"
+        response = user.get(email).get("img")
+        #response = "user updated successfully in json file"
     except Exception as e :
         response = str(e)
     return response
@@ -124,9 +106,9 @@ def lstusers():
 def delall():
     response = ''
     try:  
-        var = {"email":{"bf":{"o":"","c":"","e":"","a":"","n":""},"img":""}}
-        saveData(var)
-        response = "list reseted successfully !"
+        data = {"email":{"bf":{"o":"","c":"","e":"","a":"","n":""},"img":""}}
+        saveData(data)
+        response = "JSON reseted successfully !"
     except Exception as e :
         response = str(e)
     return response
