@@ -116,7 +116,7 @@ def delall():
 #############################################################################
 
 @app.route('/lnk', methods=['GET'])
-def delall():
+def lnk():
     response = ''
     try:  
         link = {"server":"null"}
