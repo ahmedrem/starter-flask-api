@@ -114,3 +114,15 @@ def delall():
     return response
 
 #############################################################################
+
+@app.route('/lnk', methods=['GET'])
+def delall():
+    response = ''
+    try:  
+        link = {"server":"null"}
+        response = json.dumps(link)
+    except Exception as e :
+        response = str(e)
+    return response
+
+#############################################################################
