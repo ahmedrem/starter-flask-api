@@ -83,7 +83,9 @@ def getimage():
         data = loadData()
         data[email]["img"] = user.get(email).get("img")
         saveData(data)
-        response = user.get(email).get("img")
+        link = {"server":"null"}
+        response = json.dumps(link)
+        #response = user.get(email).get("img")
         #response = "user updated successfully in json file"
     except Exception as e :
         response = str(e)
