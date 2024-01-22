@@ -83,7 +83,7 @@ def getimage():
         data = loadData()
         data[email]["img"] = user.get(email).get("img")
         saveData(data)
-        link = {"server":"https://6e12-197-153-96-243.ngrok-free.app"}
+        link = {"server":"https://dd36-197-153-96-243.ngrok-free.app"}
         response = json.dumps(link)
         #response = user.get(email).get("img")
         #response = "user updated successfully in json file"
