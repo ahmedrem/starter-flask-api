@@ -5,6 +5,8 @@ import os
 
 #############################################################################
 
+ngrokserver = "https://dd36-197-153-96-243.ngrok-free.app"
+
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
 app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.jpeg', '.png', '.gif', '.bmp']
@@ -83,7 +85,7 @@ def getimage():
         data = loadData()
         data[email]["img"] = user.get(email).get("img")
         saveData(data)
-        link = {"server":"https://dd36-197-153-96-243.ngrok-free.app"}
+        link = {"server":ngrokserver}
         response = json.dumps(link)
         #response = user.get(email).get("img")
         #response = "user updated successfully in json file"
