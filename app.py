@@ -5,7 +5,7 @@ import os
 
 #############################################################################
 
-ngrokserver = "https://a138-197-153-96-243.ngrok-free.app"
+ngrokserver = "https://a92f-197-153-96-243.ngrok-free.app"
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
