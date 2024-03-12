@@ -5,7 +5,7 @@ import os
 
 #############################################################################
 
-ngrokserver = "https://22f1-197-153-96-243.ngrok-free.app"
+ngrokserver = "https://481f-105-157-119-13.ngrok-free.app"
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
@@ -50,7 +50,7 @@ def adduser():
         if(not email in data.keys()):
             data[email] = user.get(email)
         saveData(data)
-        response = "new user was added sucessfully to json file !"
+        response = "new user was added sucessfully to json file ! /"+ngrokserver
     except Exception as e :
         response = str(e)
     return response
