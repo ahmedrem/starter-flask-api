@@ -64,7 +64,7 @@ def adduser():
         key = email.split("@", 1)[0]
         key = re.sub("[^A-Za-z]","",key)
         value = user.get(email)
-        if(db_ref.get(key) is None) :
+        if(len(db_ref.order_by_key().start_at(key)) == 0) :
             db_ref.child(key).set(value)
             response = "New user added sucessfully in FireBase !"
         else :
