@@ -5,6 +5,8 @@ from flask import Flask, request
 import boto3
 import json
 import os
+import re
+
 
 #############################################################################
 
@@ -57,6 +59,7 @@ def adduser():
         init_app = initialize_app(cred_obj,{'databaseURL': 'https://hrappdb-21305-default-rtdb.firebaseio.com/'})
         db_ref = db.reference("/Users")
         key = email.split("@", 1)[0]
+        key=re.sub("[^A-Za-z]","",key)
         value = data[email]
         db_ref.child(key).setValue(value)
         response = "new user was added sucessfully to json file !"
