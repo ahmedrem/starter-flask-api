@@ -84,10 +84,17 @@ def bigf():
         data[email]["bf"] = user.get(email).get("bf")
         saveData(data)
         '''
+        bf = user.get(email).get("bf")
+        key = email.split("@", 1)[0]
+        key = re.sub("[^A-Za-z]","",key)
+        user_ref = db_ref.child(key)
+        user_ref.child("bf").set(bf)
+        '''
         key = email.split("@", 1)[0]
         key = re.sub("[^A-Za-z]","",key)
         value = user.get(email)
         db_ref.child(key).set(value)
+        '''
         response = user.get(email).get("bf")
         #response = "Scores updated successfully in FireBase !"
     except Exception as e :
@@ -103,9 +110,16 @@ def getimage():
         user = request.get_json()
         email = list(user.keys())
         email = email[0]
+        '''
         data = loadData()
         data[email]["img"] = user.get(email).get("img")
         saveData(data)
+        '''
+        image = user.get(email).get("img")
+        key = email.split("@", 1)[0]
+        key = re.sub("[^A-Za-z]","",key)
+        user_ref = db_ref.child(key)
+        user_ref.child("img").set(image)
         link = {"server":ngrokserver}
         response = json.dumps(link)
         #response = user.get(email).get("img")
