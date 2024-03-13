@@ -17,6 +17,10 @@ app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
 app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.jpeg', '.png', '.gif', '.bmp']
 s3 = boto3.client('s3')
 
+cred_obj = Certificate('hrappdb.json')
+init_app = initialize_app(cred_obj,{'databaseURL': 'https://hrappdb-21305-default-rtdb.firebaseio.com/'})
+db_ref = db.reference("/Users")
+
 #############################################################################
 
 def saveData(data):
@@ -57,14 +61,11 @@ def adduser():
             data[email] = user.get(email)
         saveData(data)
         '''
-        cred_obj = Certificate('hrappdb.json')
-        init_app = initialize_app(cred_obj,{'databaseURL': 'https://hrappdb-21305-default-rtdb.firebaseio.com/'})
-        db_ref = db.reference("/Users")
         key = email.split("@", 1)[0]
         key = re.sub("[^A-Za-z]","",key)
         value = user.get(email)
         db_ref.child(key).set(value)
-        response = "new user was added sucessfully to json file !"
+        response = "New user added sucessfully in FireBase !"
     except Exception as e :
         response = str(e)
     return response
@@ -78,11 +79,17 @@ def bigf():
         user = request.get_json()
         email = list(user.keys())
         email = email[0]
+        '''
         data = loadData()
         data[email]["bf"] = user.get(email).get("bf")
         saveData(data)
-        response = user.get(email).get("bf")
-        #response = "user updated successfully in json file"
+        '''
+        key = email.split("@", 1)[0]
+        key = re.sub("[^A-Za-z]","",key)
+        value = user.get(email)
+        db_ref.child(key).set(value)
+        #response = user.get(email).get("bf")
+        response = "Scores updated successfully in FireBase !"
     except Exception as e :
         response = str(e)
     return response
