@@ -64,8 +64,13 @@ def adduser():
         key = email.split("@", 1)[0]
         key = re.sub("[^A-Za-z]","",key)
         value = user.get(email)
-        db_ref.child(key).set(value)
-        response = "New user added sucessfully in FireBase !"
+        user_ref = db_ref.child(key)
+        if(user_ref not null)
+            user_ref.set(value)
+            response = "New user added sucessfully in FireBase !"
+        else :
+            response = "User already exists in FireBase !"
+
     except Exception as e :
         response = str(e)
     return response
@@ -89,12 +94,6 @@ def bigf():
         key = re.sub("[^A-Za-z]","",key)
         user_ref = db_ref.child(key)
         user_ref.child("bf").set(bf)
-        '''
-        key = email.split("@", 1)[0]
-        key = re.sub("[^A-Za-z]","",key)
-        value = user.get(email)
-        db_ref.child(key).set(value)
-        '''
         response = user.get(email).get("bf")
         #response = "Scores updated successfully in FireBase !"
     except Exception as e :
