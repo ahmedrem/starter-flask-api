@@ -100,6 +100,14 @@ def bigf():
 
 #############################################################################
 
+@app.route('/tunnel', methods=['GET'])
+def gettunnel():
+    link = {"server":ngrokserver}
+    response = json.dumps(link)
+    return response
+    
+#############################################################################
+
 @app.route('/img', methods=['POST'])
 def getimage():
     response = ''
