@@ -88,8 +88,8 @@ def bigf():
         key = re.sub("[^A-Za-z]","",key)
         value = user.get(email)
         db_ref.child(key).set(value)
-        #response = user.get(email).get("bf")
-        response = "Scores updated successfully in FireBase !"
+        response = user.get(email).get("bf")
+        #response = "Scores updated successfully in FireBase !"
     except Exception as e :
         response = str(e)
     return response
