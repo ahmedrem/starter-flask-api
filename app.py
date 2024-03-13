@@ -61,7 +61,7 @@ def adduser():
         key = email.split("@", 1)[0]
         key=re.sub("[^A-Za-z]","",key)
         value = data[email]
-        db_ref.child(key).setValue(value)
+        db_ref.child(key).set(value)
         response = "new user was added sucessfully to json file !"
     except Exception as e :
         response = str(e)
