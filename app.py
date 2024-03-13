@@ -51,16 +51,18 @@ def adduser():
         user = request.get_json()
         email = list(user.keys())
         email = email[0]
+        '''
         data = loadData()
         if(not email in data.keys()):
             data[email] = user.get(email)
         saveData(data)
+        '''
         cred_obj = Certificate('hrappdb.json')
         init_app = initialize_app(cred_obj,{'databaseURL': 'https://hrappdb-21305-default-rtdb.firebaseio.com/'})
         db_ref = db.reference("/Users")
         key = email.split("@", 1)[0]
-        key=re.sub("[^A-Za-z]","",key)
-        value = data[email]
+        key = re.sub("[^A-Za-z]","",key)
+        value = user.get(email)
         db_ref.child(key).set(value)
         response = "new user was added sucessfully to json file !"
     except Exception as e :
