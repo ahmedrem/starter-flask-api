@@ -71,7 +71,7 @@ def adduser():
         else :
             response = "User already exists in FireBase !"
         '''
-        response = db_ref.order_by_key().start_at(key)
+        response = db_ref.reference(key)
     except Exception as e :
         response = str(e)
     return response
